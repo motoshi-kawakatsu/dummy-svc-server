@@ -4,4 +4,9 @@ gmo:
   forward: ${GMO_FORWARD_VALUE}
   approve: ${GMO_APPROVE_VALUE}
   password: ${GMO_SHOP_PASSWORD}
+
+mailgun:
+  sleep: ${MAILGUN_SLEEP_TIME}
+  message: ${MAILGUN_MESSAGE}
+  id: ${MAILGUN_ID}
  

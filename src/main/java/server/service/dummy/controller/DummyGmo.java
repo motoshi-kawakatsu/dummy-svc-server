@@ -39,7 +39,7 @@ public class DummyGmo {
 
 	@RequestMapping("/payment/ExecTran.idPass")
 	@ResponseBody
-	public String execTran(@RequestBody ExecTranParam param) {
+	public String execTran(@RequestBody ExecTranParam param) throws Exception {
 		String	tranId = RandomStringUtils.randomAlphanumeric(28);
 		LocalDateTime nowDate = LocalDateTime.now();
 		DateTimeFormatter	df = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
@@ -54,6 +54,8 @@ public class DummyGmo {
 		buf.append(tranDate);
 
 		String	checkString = DigestUtils.md5Hex(buf.toString() + shopPassword);
+
+		Thread.sleep(sleepTime);
 
 		return acs + buf.toString() + checkString;
 	}
