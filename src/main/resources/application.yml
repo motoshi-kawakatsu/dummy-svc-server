@@ -1,0 +1,7 @@
+gmo:
+  sleep: ${GMO_SLEEP_TIME}
+  acs: ${GMO_ACS_VALUE}
+  forward: ${GMO_FORWARD_VALUE}
+  approve: ${GMO_APPROVE_VALUE}
+  password: ${GMO_SHOP_PASSWORD}
+ 
