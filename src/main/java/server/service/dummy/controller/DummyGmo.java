@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import server.service.dummy.util.EntryTranParam;
@@ -26,7 +27,7 @@ public class DummyGmo {
     @Value("${gmo.approve}")	String approve;
     @Value("${gmo.password}")	String shopPassword;
 
-	@RequestMapping("/payment/EntryTran.idPass")
+	@RequestMapping(value="/payment/EntryTran.idPass", method=RequestMethod.POST)
 	@ResponseBody
 	public String entryTran(@RequestBody EntryTranParam param) throws Exception {
 		String	accessId = createSecureRandomString();
@@ -37,7 +38,7 @@ public class DummyGmo {
 		return accessId + "&" + accessPass;
 	}
 
-	@RequestMapping("/payment/ExecTran.idPass")
+	@RequestMapping(value="/payment/ExecTran.idPass", method=RequestMethod.POST)
 	@ResponseBody
 	public String execTran(@RequestBody ExecTranParam param) throws Exception {
 		String	tranId = RandomStringUtils.randomAlphanumeric(28);
