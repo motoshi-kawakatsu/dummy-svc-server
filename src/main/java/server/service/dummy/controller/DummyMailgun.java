@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import server.service.dummy.util.MailgunRequestParam;
 import server.service.dummy.util.MailgunResponse;
 
 @Controller
@@ -21,7 +20,7 @@ public class DummyMailgun {
 
 	@RequestMapping(value="/messages", method=RequestMethod.POST)
 	@ResponseBody
-	public MailgunResponse messages(@RequestBody MailgunRequestParam param) throws Exception {
+	public MailgunResponse messages(@RequestBody String param) throws Exception {
 		Thread.sleep(sleepTime);
 		return response;
 	}

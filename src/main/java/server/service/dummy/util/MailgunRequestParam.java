@@ -1,5 +1,7 @@
 package server.service.dummy.util;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -7,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-public class MailgunRequestParam {
+public class MailgunRequestParam implements Serializable {
 
 	@Getter @Setter @JsonProperty("from")
 	private String from;
@@ -65,7 +67,4 @@ public class MailgunRequestParam {
 
 	@Getter @Setter @JsonProperty("h:Reply-To")
 	private String h_ReplyTo;
-
-	@Getter @Setter @JsonProperty("v:my-var")
-	private String v_myVar;
 }
