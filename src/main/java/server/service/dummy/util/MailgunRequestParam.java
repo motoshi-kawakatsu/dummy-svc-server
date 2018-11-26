@@ -63,8 +63,8 @@ public class MailgunRequestParam {
 	@Getter @Setter @JsonProperty("o:skip-verification")
 	private String o_skipVerification;
 
-	@Getter @Setter @JsonProperty("h:X-My-Header")
-	private String h_XMyHeader;
+	@Getter @Setter @JsonProperty("h:Reply-To")
+	private String h_ReplyTo;
 
 	@Getter @Setter @JsonProperty("v:my-var")
 	private String v_myVar;
