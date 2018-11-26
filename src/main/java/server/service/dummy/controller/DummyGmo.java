@@ -62,7 +62,7 @@ public class DummyGmo {
 							@RequestParam(name="ClientField3", required=false) String clientField3,
 							@RequestParam(name="ClientFieldFlag", required=false) String clientFieldFlag,
 							@RequestParam(name="TokenType", required=false) String tokenType) throws Exception {
-		String	tranId = RandomStringUtils.randomAlphanumeric(28);
+		String	tranId = RandomStringUtils.randomNumeric(28);
 		LocalDateTime nowDate = LocalDateTime.now();
 		DateTimeFormatter	df = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 		String	tranDate = df.format(nowDate);
