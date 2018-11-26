@@ -41,7 +41,7 @@ public class DummyGmo {
 
 		Thread.sleep(sleepTime);
 
-		return accessId + "&" + accessPass;
+		return "AccessID=" + accessId + "&AccessPass=" +accessPass;
 	}
 
 	@RequestMapping(value="/payment/ExecTran.idPass", method=RequestMethod.POST)
@@ -79,7 +79,7 @@ public class DummyGmo {
 
 		Thread.sleep(sleepTime);
 
-		return acs + "&" + forward + "&" + method + "&" + payTimes + "&" + approve + "&" + tranId + "&" + tranDate + "&" + checkString;
+		return "ACS=" + acs + "&OrderID=" + orderId + "&Forward=" + forward + "&Method=" + method + "&PayTimes=" + payTimes + "&Approve=" + approve + "&TranID=" + tranId + "&TranDate=" + tranDate + "&CheckString=" + checkString;
 	}
 
 	private static String createSecureRandomString() throws NoSuchAlgorithmException {
