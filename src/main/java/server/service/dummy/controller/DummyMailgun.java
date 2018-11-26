@@ -18,15 +18,15 @@ public class DummyMailgun {
 
     @Value("${mailgun.sleep}")	long sleepTime;
 
-	@RequestMapping(path="/messages", method=RequestMethod.POST)
+	@RequestMapping(value="/messages", method=RequestMethod.POST)
 	@ResponseBody
-	public MailgunResponse messages(@RequestParam("to") String to,
-									 @RequestParam("cc") String cc,
-									 @RequestParam("bcc") String bcc,
-									 @RequestParam("from") String from,
-									 @RequestParam("h:Reply-To") String replyTo,
-									 @RequestParam("subject") String subject,
-									 @RequestParam("text") String text) throws Exception {
+	public MailgunResponse messages(@RequestParam(name="to", required=true) String to,
+									 @RequestParam(name="cc", required=false) String cc,
+									 @RequestParam(name="bcc", required=false) String bcc,
+									 @RequestParam(name="from", required=true) String from,
+									 @RequestParam(name="h:Reply-To", required=false) String replyTo,
+									 @RequestParam(name="subject", required=false) String subject,
+									 @RequestParam(name="text", required=false) String text) throws Exception {
 		Thread.sleep(sleepTime);
 		return response;
 	}
