@@ -79,7 +79,7 @@ public class DummyGmo {
 
 		Thread.sleep(sleepTime);
 
-		return acs + buf.toString() + checkString;
+		return acs + "&" + forward + "&" + method + "&" + payTimes + "&" + approve + "&" + tranId + "&" + tranDate + "&" + checkString;
 	}
 
 	private static String createSecureRandomString() throws NoSuchAlgorithmException {
