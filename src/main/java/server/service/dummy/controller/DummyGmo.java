@@ -18,11 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DummyGmo {
 
-    @Value("${gmo.sleep}")		long sleepTime;
-    @Value("${gmo.acs}")		String acs;
-    @Value("${gmo.forward}")	String forward;
-    @Value("${gmo.approve}")	String approve;
-    @Value("${gmo.password}")	String shopPassword;
+    @Value("${gmo.entry.sleep}")	long entrySleepTime;
+    @Value("${gmo.exec.sleep}")		long execSleepTime;
+    @Value("${gmo.entry.errcode}")	String entryErrCode;
+    @Value("${gmo.exec.errcode}")	String execErrCode;
+    @Value("${gmo.entry.errinfo}")	String entryErrInfo;
+    @Value("${gmo.exec.errinfo}")	String execErrInfo;
+    @Value("${gmo.acs}")			String acs;
+    @Value("${gmo.forward}")		String forward;
+    @Value("${gmo.approve}")		String approve;
+    @Value("${gmo.password}")		String shopPassword;
 
 	@RequestMapping(value="/payment/EntryTran.idPass", method=RequestMethod.POST)
 	@ResponseBody
@@ -38,10 +43,18 @@ public class DummyGmo {
 							 @RequestParam(name="TdTenantName", required=false) String tdTenantName) throws Exception {
 		String	accessId = createSecureRandomString();
 		String	accessPass = createSecureRandomString();
+		String	retParameter = "AccessID=" + accessId + "&AccessPass=" +accessPass;
 
-		Thread.sleep(sleepTime);
+		if(!entryErrCode.trim().isEmpty()) {
+			retParameter = retParameter + "&ErrCode=" + entryErrCode;
+			if(!entryErrInfo.trim().isEmpty()) {
+				retParameter = retParameter + "&ErrInfo=" + entryErrInfo;
+			}
+		}
 
-		return "AccessID=" + accessId + "&AccessPass=" +accessPass;
+		Thread.sleep(entrySleepTime);
+
+		return retParameter;
 	}
 
 	@RequestMapping(value="/payment/ExecTran.idPass", method=RequestMethod.POST)
@@ -77,9 +90,32 @@ public class DummyGmo {
 
 		String	checkString = DigestUtils.md5Hex(buf.toString() + shopPassword);
 
-		Thread.sleep(sleepTime);
+		String	retParameter = "ACS=" + acs
+				 			   + "&OrderID=" + orderId
+				 			   + "&Forward=" + forward
+				 			   + "&Method=" + method
+				 			   + "&PayTimes=" + payTimes
+				 			   + "&Approve=" + approve
+				 			   + "&TranID=" + tranId
+				 			   + "&TranDate=" + tranDate
+				 			   + "&CheckString=" + checkString;
 
-		return "ACS=" + acs + "&OrderID=" + orderId + "&Forward=" + forward + "&Method=" + method + "&PayTimes=" + payTimes + "&Approve=" + approve + "&TranID=" + tranId + "&TranDate=" + tranDate + "&CheckString=" + checkString;
+		if("1".equals(clientFieldFlag)) {
+			retParameter = retParameter + "&ClientField1=" + clientField1;
+			retParameter = retParameter + "&ClientField2=" + clientField2;
+			retParameter = retParameter + "&ClientField3=" + clientField3;
+		}
+
+		if(!execErrCode.trim().isEmpty()) {
+			retParameter = retParameter + "&ErrCode=" + execErrCode;
+			if(!execErrInfo.trim().isEmpty()) {
+				retParameter = retParameter + "&ErrInfo=" + execErrInfo;
+			}
+		}
+
+		Thread.sleep(execSleepTime);
+
+		return retParameter;
 	}
 
 	private static String createSecureRandomString() throws NoSuchAlgorithmException {

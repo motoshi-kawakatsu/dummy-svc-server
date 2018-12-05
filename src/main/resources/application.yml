@@ -1,10 +1,16 @@
 gmo:
-  sleep: ${GMO_SLEEP_TIME}
   acs: ${GMO_ACS_VALUE}
   forward: ${GMO_FORWARD_VALUE}
   approve: ${GMO_APPROVE_VALUE}
   password: ${GMO_SHOP_PASSWORD}
-
+  entry:
+    sleep: ${GMO_ENTRY_SLEEP_TIME}
+    errcode: ${GMO_ENTRY_ERRCODE}
+    errInfo: ${GMO_ENTRY_ERRINFO}
+  exec:
+    sleep: ${GMO_EXEC_SLEEP_TIME}
+    errcode: ${GMO_EXEC_ERRCODE}
+    errInfo: ${GMO_EXEC_ERRINFO}
 mailgun:
   sleep: ${MAILGUN_SLEEP_TIME}
   message: ${MAILGUN_MESSAGE}
